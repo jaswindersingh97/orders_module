@@ -1,0 +1,15 @@
+{
+  "name": "@acme/api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --hot src/index.ts",
+    "start": "bun src/index.ts",
+    "build": "bun build src/index.ts --outdir dist"
+  },
+  "dependencies": {
+    "@acme/db": "workspace:*",
+    "@acme/shared": "workspace:*",
+    "hono": "^4.7.11"
+  }
+}

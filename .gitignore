@@ -1,0 +1,12 @@
+node_modules
+.next
+.turbo
+.DS_Store
+dist
+coverage
+*.log
+.env
+.env.local
+.env.*.local
+packages/db/drizzle/meta
+packages/db/drizzle/*.sql
