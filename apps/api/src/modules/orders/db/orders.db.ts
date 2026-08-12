@@ -1,5 +1,1 @@
-export {
-  orderItems,
-  orders,
-  orderStatusEvents,
-} from "@acme/db/features/orders/orders.db";
+export { orders, orderItems, orderStatusEvents } from "@acme/db";

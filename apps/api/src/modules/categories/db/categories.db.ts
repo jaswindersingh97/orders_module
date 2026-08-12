@@ -1,1 +1,1 @@
-export { categories } from "@acme/db/features/categories/categories.db";
+export { categories } from "@acme/db";

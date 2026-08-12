@@ -1,1 +1,1 @@
-export { cartItems } from "@acme/db/features/cart/cart.db";
+export { cartItems } from "@acme/db";

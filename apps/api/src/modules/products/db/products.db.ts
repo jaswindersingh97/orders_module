@@ -1,1 +1,1 @@
-export { products } from "@acme/db/features/products/products.db";
+export { products } from "@acme/db";
