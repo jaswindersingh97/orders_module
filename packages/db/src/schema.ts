@@ -1,13 +1,14 @@
-import { pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
-
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  name: varchar("name", { length: 120 }).notNull(),
-  email: text("email").notNull().unique(),
-  createdAt: timestamp("created_at", { withTimezone: true })
-    .notNull()
-    .defaultNow(),
-});
-
-export type User = typeof users.$inferSelect;
-export type NewUser = typeof users.$inferInsert;
+export * from "./features/addresses/addresses.db";
+export * from "./features/addresses/addresses.relations";
+export * from "./features/cart/cart.db";
+export * from "./features/cart/cart.relations";
+export * from "./features/categories/categories.db";
+export * from "./features/categories/categories.relations";
+export * from "./features/customers/customers.db";
+export * from "./features/customers/customers.relations";
+export * from "./features/orders/orders.db";
+export * from "./features/orders/orders.relations";
+export * from "./features/products/products.db";
+export * from "./features/products/products.relations";
+export * from "./features/users/users.db";
+export * from "./features/users/users.relations";
