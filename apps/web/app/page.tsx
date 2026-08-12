@@ -343,7 +343,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100 antialiased font-sans pb-24">
+    <main className="min-h-screen bg-black text-zinc-100 antialiased font-sans pb-24">
       {/* Toast Notification */}
       {message && (
         <div className={`fixed top-5 right-5 z-50 px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 transition-all duration-300 transform translate-y-0 border backdrop-blur-md ${
@@ -357,19 +357,19 @@ export default function Home() {
       )}
 
       {/* Persistent Header */}
-      <header className="sticky top-0 z-40 bg-zinc-900/70 border-b border-zinc-800/80 backdrop-blur-md">
+      <header className="sticky top-0 z-40 bg-zinc-900/90 border-b border-zinc-700/60 backdrop-blur-md shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-3xl">🍔</span>
             <div>
-              <h1 className="text-xl font-bold tracking-tight text-white">BiteSpeed</h1>
-              <p className="text-xs text-amber-500 font-medium tracking-wide uppercase">Food Delivery</p>
+              <h1 className="text-xl font-bold tracking-tight text-white animate-fade-in">BiteSpeed</h1>
+              <p className="text-xs text-amber-500 font-semibold tracking-wide uppercase">Food Delivery</p>
             </div>
           </div>
 
           {/* Persona Switcher & Cart */}
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-1.5 shadow-inner">
+            <div className="flex items-center gap-2 bg-zinc-950 border border-zinc-700/80 rounded-lg px-3 py-1.5 shadow-md">
               <span className="text-xs text-zinc-400 font-medium">Testing Persona:</span>
               <select
                 value={activeUser.id}
@@ -390,7 +390,7 @@ export default function Home() {
             {activeUser.role === "customer" && (
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold px-4 py-2 rounded-lg flex items-center gap-2 shadow-lg transition duration-200 hover:scale-105 active:scale-95"
+                className="relative bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-extrabold px-4 py-2.5 rounded-lg flex items-center gap-2 shadow-lg shadow-amber-500/15 transition-all duration-200 hover:scale-105 active:scale-95"
               >
                 <span>🛒</span>
                 <span className="hidden md:inline">Cart</span>
@@ -413,18 +413,18 @@ export default function Home() {
           <div className="space-y-12">
             
             {/* Customer Welcome Header */}
-            <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="bg-zinc-900/95 border-2 border-zinc-700 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xl shadow-black/35">
               <div>
                 <h2 className="text-2xl font-extrabold text-white">Welcome back, {customerInfo?.name || "Customer"}!</h2>
-                <p className="text-zinc-400 text-sm mt-1">Browse our delicious categories below and order your favorites.</p>
+                <p className="text-zinc-300 text-sm mt-1">Browse our delicious categories below and order your favorites.</p>
               </div>
               <div className="flex gap-4 text-sm">
-                <div className="bg-zinc-900/80 border border-zinc-800 rounded-xl px-4 py-3">
-                  <span className="text-zinc-500 block text-xs">Email</span>
+                <div className="bg-zinc-950 border border-zinc-700/50 rounded-xl px-4 py-3 shadow-inner">
+                  <span className="text-zinc-500 block text-xs font-bold uppercase tracking-wider">Email</span>
                   <span className="font-semibold text-zinc-200">{activeUser.email}</span>
                 </div>
-                <div className="bg-zinc-900/80 border border-zinc-800 rounded-xl px-4 py-3">
-                  <span className="text-zinc-500 block text-xs">Default Phone</span>
+                <div className="bg-zinc-950 border border-zinc-700/50 rounded-xl px-4 py-3 shadow-inner">
+                  <span className="text-zinc-500 block text-xs font-bold uppercase tracking-wider">Default Phone</span>
                   <span className="font-semibold text-zinc-200">{customerInfo?.phoneNumber || "N/A"}</span>
                 </div>
               </div>
@@ -438,26 +438,25 @@ export default function Home() {
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-3">Filter Menu</h3>
                   
-                  {/* Search Bar */}
-                  <div className="relative mb-4">
+                  {/* Searc                  <div className="relative mb-4">
                     <input
                       type="text"
                       placeholder="Search dishes..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl px-4 py-3 pl-10 text-sm focus:outline-none focus:border-amber-500 transition text-zinc-100"
+                      className="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-3 pl-10 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30 transition text-zinc-100 placeholder-zinc-550"
                     />
-                    <span className="absolute left-3.5 top-3.5 text-zinc-500">🔍</span>
+                    <span className="absolute left-3.5 top-3.5 text-zinc-550">🔍</span>
                   </div>
 
                   {/* Categories list */}
                   <div className="flex flex-wrap lg:flex-col gap-2">
                     <button
                       onClick={() => setSelectedCategory(null)}
-                      className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition text-left ${
+                      className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition text-left border ${
                         selectedCategory === null 
-                          ? "bg-amber-500 text-zinc-950 shadow-md" 
-                          : "bg-zinc-900 hover:bg-zinc-800/80 text-zinc-300"
+                          ? "bg-gradient-to-r from-amber-500 to-amber-600 border-amber-600 text-zinc-950 shadow-md shadow-amber-500/10 font-bold" 
+                          : "bg-zinc-900/90 hover:bg-zinc-850 hover:border-zinc-600 border-zinc-700/80 text-zinc-300 hover:text-white"
                       }`}
                     >
                       🍔 All Categories
@@ -466,11 +465,10 @@ export default function Home() {
                       <button
                         key={cat.id}
                         onClick={() => setSelectedCategory(cat.id)}
-                        className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition text-left ${
+                        className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition text-left border ${
                           selectedCategory === cat.id 
-                            ? "bg-amber-500 text-zinc-950 shadow-md" 
-                            : "bg-zinc-900 hover:bg-zinc-800/80 text-zinc-300"
-                        }`}
+                            ? "bg-gradient-to-r from-amber-500 to-amber-600 border-amber-600 text-zinc-950 shadow-md shadow-amber-500/10 font-bold" 
+                            : "bg-zinc-900/90 hover:bg-zinc-850 hover:border-zinc-600 border-zinc-700/80 text-zinc-300 hover:text-white"}`}
                       >
                         {cat.name === "Pizza" && "🍕 "}
                         {cat.name === "Burgers" && "🍔 "}
@@ -494,19 +492,19 @@ export default function Home() {
                 </h3>
 
                 {products.length === 0 ? (
-                  <div className="bg-zinc-900/20 border border-zinc-800/50 rounded-2xl p-12 text-center text-zinc-500">
+                  <div className="bg-zinc-900/60 border border-zinc-700/50 rounded-2xl p-12 text-center text-zinc-400 shadow-inner">
                     <span className="text-4xl block mb-3">🥡</span>
-                    <p className="font-semibold text-lg text-zinc-400">No items found matching criteria.</p>
-                    <p className="text-sm mt-1">Try resetting filters or changing your search search query.</p>
+                    <p className="font-semibold text-lg text-zinc-300">No items found matching criteria.</p>
+                    <p className="text-sm mt-1 text-zinc-500">Try resetting filters or changing your search search query.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {products.map((prod) => (
                       <article
                         key={prod.id}
-                        className="bg-zinc-900/30 border border-zinc-800/80 rounded-2xl overflow-hidden hover:border-zinc-700 transition duration-300 flex flex-col group"
+                        className="bg-zinc-900/95 border-2 border-zinc-700/80 rounded-2xl overflow-hidden hover:border-zinc-500 hover:bg-zinc-900 transition-all duration-300 flex flex-col group hover:shadow-xl hover:shadow-black/40 hover:-translate-y-1"
                       >
-                        <div className="h-44 relative bg-zinc-950 overflow-hidden">
+                        <div className="h-44 relative bg-zinc-950 overflow-hidden border-b border-zinc-800">
                           <img
                             src={prod.imageUrls?.[0] || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c"}
                             alt={prod.name}
@@ -519,13 +517,13 @@ export default function Home() {
                         <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                           <div>
                             <h4 className="font-bold text-lg text-white group-hover:text-amber-400 transition">{prod.name}</h4>
-                            <p className="text-zinc-400 text-xs mt-1 line-clamp-2 leading-relaxed">{prod.description}</p>
+                            <p className="text-zinc-300 text-xs mt-1 line-clamp-2 leading-relaxed">{prod.description}</p>
                           </div>
                           <div className="flex items-center justify-between pt-2">
                             <span className="text-xl font-black text-amber-400">${parseFloat(prod.price).toFixed(2)}</span>
                             <button
                               onClick={() => handleAddToCart(prod.id)}
-                              className="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 text-zinc-200 text-xs font-bold px-3.5 py-2 rounded-xl transition duration-200 active:scale-95 shadow-md flex items-center gap-1.5"
+                              className="bg-zinc-800 hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-600 hover:text-zinc-950 border border-zinc-700 hover:border-amber-600 text-zinc-200 text-xs font-extrabold px-3.5 py-2.5 rounded-xl transition-all duration-200 active:scale-95 shadow-md flex items-center gap-1.5"
                             >
                               <span>+</span> Add to Cart
                             </button>
@@ -539,13 +537,13 @@ export default function Home() {
             </div>
 
             {/* Customer Orders History Section */}
-            <div className="border-t border-zinc-800/80 pt-12">
+            <div className="border-t border-zinc-700/60 pt-12">
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                 <span>📋</span> Your Past & Active Orders
               </h3>
 
               {orders.length === 0 ? (
-                <div className="bg-zinc-900/20 border border-zinc-800/50 rounded-2xl p-8 text-center text-zinc-500">
+                <div className="bg-zinc-900/60 border border-zinc-700/50 rounded-2xl p-8 text-center text-zinc-400 shadow-inner">
                   <p>You have not placed any orders yet. Place your first order to track it here!</p>
                 </div>
               ) : (
@@ -553,17 +551,17 @@ export default function Home() {
                   {orders.map((ord) => (
                     <div
                       key={ord.id}
-                      className="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-zinc-700 transition"
+                      className="bg-zinc-900/95 border-2 border-zinc-700/80 rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-zinc-500 hover:bg-zinc-900 transition-all duration-300 shadow-lg shadow-black/25"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-3">
                           <span className="text-zinc-100 font-bold">Order #{ord.id}</span>
-                          <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${
-                            ord.status === "order_received" ? "bg-amber-500/10 border-amber-500/30 text-amber-300" :
-                            ord.status === "preparing" ? "bg-blue-500/10 border-blue-500/30 text-blue-300" :
-                            ord.status === "out_for_delivery" ? "bg-indigo-500/10 border-indigo-500/30 text-indigo-300" :
-                            ord.status === "delivered" ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300" :
-                            "bg-zinc-800 border-zinc-700 text-zinc-400"
+                          <span className={`px-2.5 py-0.5 rounded-full text-xs font-extrabold border ${
+                            ord.status === "order_received" ? "bg-amber-500/15 border-amber-500/40 text-amber-400" :
+                            ord.status === "preparing" ? "bg-blue-500/15 border-blue-500/40 text-blue-400" :
+                            ord.status === "out_for_delivery" ? "bg-indigo-500/15 border-indigo-500/40 text-indigo-400" :
+                            ord.status === "delivered" ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-400" :
+                            "bg-zinc-800 border-zinc-700 text-zinc-300"
                           }`}>
                             {formatStatus(ord.status)}
                           </span>
@@ -571,19 +569,19 @@ export default function Home() {
                         <p className="text-zinc-400 text-xs">
                           Placed on: {new Date(ord.statusEvents?.[0]?.createdAt || Date.now()).toLocaleDateString()}
                         </p>
-                        <p className="text-zinc-300 text-sm mt-1 line-clamp-1">
+                        <p className="text-zinc-350 text-sm mt-1 line-clamp-1">
                           Items: {ord.items?.map((item: any) => `${item.product?.name || "Food"} (x${item.quantity})`).join(", ")}
                         </p>
                       </div>
 
                       <div className="flex items-center gap-5 justify-between md:justify-end">
                         <div className="text-right">
-                          <span className="text-zinc-400 text-xs block">Total Amount</span>
+                          <span className="text-zinc-500 text-xs block font-bold uppercase tracking-wide">Total Amount</span>
                           <span className="text-white font-extrabold text-lg">${parseFloat(ord.amount).toFixed(2)}</span>
                         </div>
                         <a
                           href={`/orders/${ord.id}`}
-                          className="bg-zinc-800 hover:bg-zinc-700 text-zinc-100 hover:text-white border border-zinc-700 text-xs font-semibold px-4 py-2.5 rounded-lg transition"
+                          className="bg-zinc-800 hover:bg-zinc-700 hover:border-zinc-600 text-zinc-100 hover:text-white border border-zinc-700 text-xs font-bold px-4 py-2.5 rounded-lg transition"
                         >
                           Track Status →
                         </a>
@@ -608,11 +606,11 @@ export default function Home() {
               <span className="text-4xl hidden sm:inline">🛡️</span>
             </div>
 
-            <div className="bg-zinc-900/30 border border-zinc-800 rounded-2xl p-6">
+            <div className="bg-zinc-900/95 border-2 border-zinc-700 rounded-2xl p-6 shadow-xl shadow-black/30">
               <h3 className="text-lg font-bold text-white mb-6">All Store Orders</h3>
 
               {orders.length === 0 ? (
-                <div className="text-center text-zinc-500 py-12">
+                <div className="text-center text-zinc-550 py-12">
                   <span className="text-4xl block mb-2">📥</span>
                   <p>No orders have been placed in the system yet.</p>
                 </div>
@@ -620,7 +618,7 @@ export default function Home() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-zinc-800 text-zinc-400 text-xs font-semibold uppercase">
+                      <tr className="border-b border-zinc-700 text-zinc-300 text-xs font-bold uppercase">
                         <th className="py-4 px-2">Order ID</th>
                         <th className="py-4 px-2">Customer</th>
                         <th className="py-4 px-2">Items</th>
@@ -629,9 +627,9 @@ export default function Home() {
                         <th className="py-4 px-2 text-right">Update Status</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/60 text-sm">
+                    <tbody className="divide-y divide-zinc-700/40 text-sm">
                       {orders.map((ord) => (
-                        <tr key={ord.id} className="hover:bg-zinc-900/10">
+                        <tr key={ord.id} className="hover:bg-zinc-800/25 transition">
                           <td className="py-4 px-2 font-bold text-zinc-200">#{ord.id}</td>
                           <td className="py-4 px-2">
                             <span className="block font-medium text-white">Customer #{ord.customerId}</span>
@@ -646,12 +644,12 @@ export default function Home() {
                           </td>
                           <td className="py-4 px-2 text-zinc-200 font-semibold">${parseFloat(ord.amount).toFixed(2)}</td>
                           <td className="py-4 px-2">
-                            <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-bold border ${
-                              ord.status === "order_received" ? "bg-amber-500/10 border-amber-500/30 text-amber-300" :
-                              ord.status === "preparing" ? "bg-blue-500/10 border-blue-500/30 text-blue-300" :
-                              ord.status === "out_for_delivery" ? "bg-indigo-500/10 border-indigo-500/30 text-indigo-300" :
-                              ord.status === "delivered" ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300" :
-                              "bg-zinc-800 border-zinc-700 text-zinc-400"
+                            <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-extrabold border ${
+                              ord.status === "order_received" ? "bg-amber-500/15 border-amber-500/40 text-amber-400" :
+                              ord.status === "preparing" ? "bg-blue-500/15 border-blue-500/40 text-blue-400" :
+                              ord.status === "out_for_delivery" ? "bg-indigo-500/15 border-indigo-500/40 text-indigo-400" :
+                              ord.status === "delivered" ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-400" :
+                              "bg-zinc-800 border-zinc-700 text-zinc-300"
                             }`}>
                               {formatStatus(ord.status)}
                             </span>
@@ -683,19 +681,19 @@ export default function Home() {
 
       {/* CART SLIDING SIDEBAR */}
       {isCartOpen && (
-        <div className="fixed inset-0 z-50 overflow-hidden">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setIsCartOpen(false)} />
+        <div className="fixed inset-0 z-50 overflow-hidden animate-fade-in">
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onClick={() => setIsCartOpen(false)} />
           <div className="absolute inset-y-0 right-0 max-w-full flex">
-            <div className="w-screen max-w-md bg-zinc-900 border-l border-zinc-800 text-zinc-100 flex flex-col shadow-2xl">
+            <div className="w-screen max-w-md bg-zinc-900 border-l border-zinc-700 text-zinc-100 flex flex-col shadow-2xl">
               
-              <div className="p-6 border-b border-zinc-800 flex items-center justify-between">
+              <div className="p-6 border-b border-zinc-700 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-xl">🛒</span>
                   <h3 className="text-lg font-bold text-white">Your Cart</h3>
                 </div>
                 <button
                   onClick={() => setIsCartOpen(false)}
-                  className="text-zinc-400 hover:text-white p-2 rounded-lg hover:bg-zinc-850 transition"
+                  className="text-zinc-400 hover:text-white p-2 rounded-lg hover:bg-zinc-800 transition"
                 >
                   ✕
                 </button>
@@ -711,8 +709,8 @@ export default function Home() {
                   </div>
                 ) : (
                   cart.map((item) => (
-                    <div key={item.id} className="bg-zinc-950/40 border border-zinc-850 p-4 rounded-xl flex gap-4 items-center">
-                      <div className="h-16 w-16 rounded-lg overflow-hidden bg-zinc-900 flex-shrink-0">
+                    <div key={item.id} className="bg-zinc-950 border border-zinc-700/50 p-4 rounded-xl flex gap-4 items-center shadow-inner">
+                      <div className="h-16 w-16 rounded-lg overflow-hidden bg-zinc-900 flex-shrink-0 border border-zinc-800">
                         <img
                           src={item.product?.imageUrls?.[0] || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c"}
                           alt={item.product?.name}
@@ -721,20 +719,20 @@ export default function Home() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="font-bold text-sm text-white truncate">{item.product?.name}</h4>
-                        <span className="text-xs text-amber-500 block">${parseFloat(item.product?.price || "0").toFixed(2)}</span>
+                        <span className="text-xs text-amber-500 block font-bold">${parseFloat(item.product?.price || "0").toFixed(2)}</span>
                         
                         {/* Adjust quantities */}
                         <div className="flex items-center gap-3 mt-2">
                           <button
                             onClick={() => handleUpdateCartQuantity(item.productId, item.quantity - 1)}
-                            className="bg-zinc-850 hover:bg-zinc-800 h-6 w-6 rounded flex items-center justify-center text-sm font-bold"
+                            className="bg-zinc-800 hover:bg-zinc-700 border border-zinc-700/80 h-6 w-6 rounded flex items-center justify-center text-sm font-extrabold transition"
                           >
                             -
                           </button>
                           <span className="text-sm font-bold text-zinc-200">{item.quantity}</span>
                           <button
                             onClick={() => handleUpdateCartQuantity(item.productId, item.quantity + 1)}
-                            className="bg-zinc-850 hover:bg-zinc-800 h-6 w-6 rounded flex items-center justify-center text-sm font-bold"
+                            className="bg-zinc-800 hover:bg-zinc-700 border border-zinc-700/80 h-6 w-6 rounded flex items-center justify-center text-sm font-extrabold transition"
                           >
                             +
                           </button>
@@ -742,7 +740,7 @@ export default function Home() {
                       </div>
                       <button
                         onClick={() => handleRemoveCartItem(item.id)}
-                        className="text-zinc-500 hover:text-rose-400 p-2 rounded"
+                        className="text-zinc-550 hover:text-rose-450 p-2 rounded transition"
                       >
                         🗑
                       </button>
@@ -753,7 +751,7 @@ export default function Home() {
 
               {/* Cart Footer */}
               {cart.length > 0 && (
-                <div className="p-6 bg-zinc-950/60 border-t border-zinc-800/80 space-y-4">
+                <div className="p-6 bg-zinc-950 border-t border-zinc-700 space-y-4">
                   <div className="flex items-center justify-between text-base font-bold text-white">
                     <span>Subtotal</span>
                     <span className="text-amber-400 text-lg">${cartSubtotal.toFixed(2)}</span>
@@ -765,7 +763,7 @@ export default function Home() {
                       setIsCartOpen(false);
                       setIsCheckoutOpen(true);
                     }}
-                    className="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold py-3.5 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10"
+                    className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-extrabold py-3.5 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10"
                   >
                     Proceed to Checkout →
                   </button>
@@ -779,13 +777,13 @@ export default function Home() {
 
       {/* CHECKOUT MODAL */}
       {isCheckoutOpen && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
+        <div className="fixed inset-0 z-50 overflow-y-auto animate-fade-in">
           <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" onClick={() => setIsCheckoutOpen(false)} />
           
           <div className="flex items-center justify-center min-h-screen p-4">
-            <div className="relative bg-zinc-900 border border-zinc-800 rounded-2xl max-w-lg w-full p-6 text-zinc-100 shadow-2xl space-y-6">
+            <div className="relative bg-zinc-900 border border-zinc-700 rounded-2xl max-w-lg w-full p-6 text-zinc-100 shadow-2xl space-y-6">
               
-              <div className="flex justify-between items-center border-b border-zinc-800 pb-4">
+              <div className="flex justify-between items-center border-b border-zinc-700 pb-4">
                 <h3 className="text-xl font-bold text-white">Confirm Checkout Details</h3>
                 <button
                   onClick={() => setIsCheckoutOpen(false)}
@@ -803,7 +801,7 @@ export default function Home() {
                     type="text"
                     disabled
                     value={customerInfo?.name || ""}
-                    className="w-full bg-zinc-950/60 border border-zinc-800/80 rounded-xl px-4 py-3 text-sm text-zinc-400 cursor-not-allowed"
+                    className="w-full bg-zinc-950/60 border border-zinc-800/80 rounded-xl px-4 py-3 text-sm text-zinc-500 cursor-not-allowed"
                   />
                 </div>
 
@@ -815,7 +813,7 @@ export default function Home() {
                     required
                     value={checkoutPhone}
                     onChange={(e) => setCheckoutPhone(e.target.value)}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition text-zinc-100"
+                    className="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30 transition text-zinc-100"
                   />
                 </div>
 
@@ -828,10 +826,10 @@ export default function Home() {
                       {customerInfo.addresses.map((addr: any) => (
                         <label
                           key={addr.id}
-                          className={`flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition ${
+                          className={`flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all ${
                             checkoutAddressId === addr.id
-                              ? "bg-amber-500/5 border-amber-500/50 text-white"
-                              : "bg-zinc-950/40 border-zinc-800 text-zinc-300"
+                              ? "bg-amber-500/10 border-amber-500 text-white shadow-md shadow-amber-500/5"
+                              : "bg-zinc-950 border-zinc-700 text-zinc-300 hover:border-zinc-500/40"
                           }`}
                         >
                           <input
@@ -842,7 +840,7 @@ export default function Home() {
                             className="mt-1 text-amber-500 focus:ring-amber-500 accent-amber-500"
                           />
                           <div>
-                            <span className="font-bold text-xs uppercase text-amber-400">{addr.label || "Address"}</span>
+                            <span className="font-bold text-xs uppercase text-amber-450">{addr.label || "Address"}</span>
                             <p className="text-sm mt-0.5">{addr.line1}{addr.line2 ? `, ${addr.line2}` : ""}</p>
                             <p className="text-xs text-zinc-500">{addr.city}, {addr.state} {addr.postalCode}</p>
                           </div>
@@ -858,7 +856,7 @@ export default function Home() {
                       </button>
                     </div>
                   ) : (
-                    <div className="bg-zinc-950/40 border border-zinc-800 p-4 rounded-xl space-y-4">
+                    <div className="bg-zinc-950 border border-zinc-700 p-4 rounded-xl space-y-4 shadow-inner">
                       <div className="flex justify-between items-center">
                         <span className="text-xs font-bold text-zinc-400 uppercase">Enter Address details</span>
                         {customerInfo?.addresses && customerInfo.addresses.length > 0 && (
@@ -877,7 +875,7 @@ export default function Home() {
                         placeholder="Street Address, Apt, Floor"
                         value={newAddressLine1}
                         onChange={(e) => setNewAddressLine1(e.target.value)}
-                        className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100"
+                        className="w-full bg-zinc-950 border border-zinc-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30 rounded-lg px-3 py-2 text-sm text-zinc-100 focus:outline-none"
                       />
                       <div className="grid grid-cols-2 gap-2">
                         <input
@@ -885,14 +883,14 @@ export default function Home() {
                           placeholder="City"
                           value={newAddressCity}
                           onChange={(e) => setNewAddressCity(e.target.value)}
-                          className="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100"
+                          className="bg-zinc-950 border border-zinc-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30 rounded-lg px-3 py-2 text-sm text-zinc-100 focus:outline-none"
                         />
                         <input
                           type="text"
                           placeholder="State"
                           value={newAddressState}
                           onChange={(e) => setNewAddressState(e.target.value)}
-                          className="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100"
+                          className="bg-zinc-950 border border-zinc-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30 rounded-lg px-3 py-2 text-sm text-zinc-100 focus:outline-none"
                         />
                       </div>
                       <input
@@ -900,14 +898,14 @@ export default function Home() {
                         placeholder="Zip/Postal Code"
                         value={newAddressZip}
                         onChange={(e) => setNewAddressZip(e.target.value)}
-                        className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100"
+                        className="w-full bg-zinc-950 border border-zinc-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30 rounded-lg px-3 py-2 text-sm text-zinc-100 focus:outline-none"
                       />
                     </div>
                   )}
                 </div>
 
                 {/* Subtotal summary */}
-                <div className="bg-zinc-950 border border-zinc-800 p-4 rounded-xl flex items-center justify-between">
+                <div className="bg-zinc-950 border border-zinc-700 p-4 rounded-xl flex items-center justify-between shadow-inner">
                   <div>
                     <span className="text-zinc-500 text-xs">Total payment</span>
                     <span className="block text-white font-extrabold text-lg">${cartSubtotal.toFixed(2)}</span>

@@ -99,9 +99,9 @@ export default function OrderTracking({ params }: OrderTrackingProps) {
   ];
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100 antialiased font-sans pb-24">
+    <main className="min-h-screen bg-black text-zinc-100 antialiased font-sans pb-24">
       {/* Header */}
-      <header className="bg-zinc-900/40 border-b border-zinc-850 py-6">
+      <header className="sticky top-0 z-40 bg-zinc-900/90 border-b border-zinc-700/60 backdrop-blur-md shadow-md py-6">
         <div className="max-w-4xl mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-2xl">🍔</span>
@@ -109,7 +109,7 @@ export default function OrderTracking({ params }: OrderTrackingProps) {
           </div>
           <a
             href="/"
-            className="bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 text-zinc-300 text-sm font-semibold px-4 py-2 rounded-lg transition"
+            className="bg-zinc-900 hover:bg-zinc-800 hover:border-zinc-600 border border-zinc-700 text-zinc-300 hover:text-white text-sm font-bold px-4 py-2 rounded-lg transition"
           >
             ← Return to Menu
           </a>
@@ -120,14 +120,14 @@ export default function OrderTracking({ params }: OrderTrackingProps) {
       <div className="max-w-4xl mx-auto px-4 mt-12 space-y-8">
         
         {/* Main Status Card */}
-        <section className="bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6 md:p-8 space-y-8 shadow-xl">
+        <section className="bg-zinc-900/95 border-2 border-zinc-700 rounded-2xl p-6 md:p-8 space-y-8 shadow-xl shadow-black/35">
           
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-850 pb-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-700/80 pb-6">
             <div>
               <span className="text-xs text-amber-500 font-bold uppercase tracking-wider">Live Order Progress</span>
               <h2 className="text-2xl font-black text-white mt-1">Order #{order.id}</h2>
-              <p className="text-zinc-500 text-xs mt-0.5">
-                Total Payment: <span className="text-zinc-300 font-semibold">${parseFloat(order.amount).toFixed(2)}</span>
+              <p className="text-zinc-400 text-xs mt-0.5">
+                Total Payment: <span className="text-zinc-200 font-semibold">${parseFloat(order.amount).toFixed(2)}</span>
               </p>
             </div>
 
@@ -135,7 +135,7 @@ export default function OrderTracking({ params }: OrderTrackingProps) {
             <button
               onClick={() => fetchOrderDetails(false)}
               disabled={refreshing}
-              className="bg-amber-500 hover:bg-amber-400 disabled:bg-amber-600 text-zinc-950 font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 transition duration-200 shadow-lg active:scale-95"
+              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 disabled:from-amber-600 disabled:to-amber-700 text-zinc-950 font-extrabold px-5 py-2.5 rounded-xl flex items-center gap-2 transition duration-200 shadow-lg shadow-amber-500/10 active:scale-95"
             >
               <span className={refreshing ? "animate-spin block" : ""}>🔄</span>
               {refreshing ? "Refreshing..." : "Refresh Status"}
@@ -168,9 +168,9 @@ export default function OrderTracking({ params }: OrderTrackingProps) {
                       <div className={`h-12 w-12 rounded-full flex items-center justify-center text-lg shadow-md border-2 transition-all duration-300 ${
                         isActive
                           ? isCurrent
-                            ? "bg-amber-500 border-amber-400 text-zinc-950 scale-110 font-bold"
+                            ? "bg-gradient-to-r from-amber-500 to-amber-600 border-amber-400 text-zinc-950 scale-110 font-bold shadow-lg shadow-amber-500/15"
                             : "bg-zinc-800 border-amber-500 text-amber-400"
-                          : "bg-zinc-900 border-zinc-800 text-zinc-600"
+                          : "bg-zinc-950 border-zinc-700 text-zinc-500"
                       }`}>
                         {step.icon}
                       </div>
@@ -178,12 +178,12 @@ export default function OrderTracking({ params }: OrderTrackingProps) {
                       {/* Step Labels */}
                       <div>
                         <h4 className={`text-sm font-bold transition-colors duration-300 ${
-                          isActive ? "text-white" : "text-zinc-500"
+                          isActive ? "text-white" : "text-zinc-400"
                         }`}>
                           {step.label}
                         </h4>
                         <p className={`text-xs mt-0.5 ${
-                          isActive ? "text-zinc-400" : "text-zinc-600"
+                          isActive ? "text-zinc-300" : "text-zinc-500"
                         }`}>
                           {step.desc}
                         </p>
@@ -201,12 +201,12 @@ export default function OrderTracking({ params }: OrderTrackingProps) {
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           
           {/* Items Summary (2 cols) */}
-          <div className="md:col-span-2 bg-zinc-900/30 border border-zinc-800 rounded-2xl p-6 space-y-4">
+          <div className="md:col-span-2 bg-zinc-900/95 border-2 border-zinc-700 rounded-2xl p-6 space-y-4 shadow-xl shadow-black/30">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <span>🥡</span> Items Ordered
             </h3>
             
-            <div className="divide-y divide-zinc-850 text-sm">
+            <div className="divide-y divide-zinc-700/40 text-sm">
               {order.items?.map((item: any) => (
                 <div key={item.id} className="py-3.5 flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -218,19 +218,19 @@ export default function OrderTracking({ params }: OrderTrackingProps) {
               ))}
             </div>
 
-            <div className="flex justify-between items-center pt-4 border-t border-zinc-800 text-base font-bold text-white">
+            <div className="flex justify-between items-center pt-4 border-t border-zinc-700/85 text-base font-bold text-white">
               <span>Total Payment</span>
               <span className="text-amber-400">${parseFloat(order.amount).toFixed(2)}</span>
             </div>
           </div>
 
           {/* Delivery Location (1 col) */}
-          <div className="bg-zinc-900/30 border border-zinc-800 rounded-2xl p-6 space-y-4">
+          <div className="bg-zinc-900/95 border-2 border-zinc-700 rounded-2xl p-6 space-y-4 shadow-xl shadow-black/30">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <span>📍</span> Delivery Location
             </h3>
             
-            <div className="bg-zinc-950/40 border border-zinc-850 p-4 rounded-xl space-y-3">
+            <div className="bg-zinc-950 border border-zinc-700/50 p-4 rounded-xl space-y-3 shadow-inner">
               <div>
                 <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Deliver to</span>
                 <span className="font-semibold text-zinc-200">Customer ID #{order.customerId}</span>
